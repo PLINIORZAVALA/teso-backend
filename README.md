@@ -92,7 +92,7 @@ python run.py
 
 ##  Prueba de Endpoints – Métodos Disponibles
 
-### 📥 GET: Listar gastos
+### GET: Listar gastos
 
 ```bash
 wget --method=GET http://localhost:5000/api/gastos/ -O -
@@ -100,7 +100,7 @@ wget --method=GET http://localhost:5000/api/gastos/ -O -
 
 ---
 
-### 📤 POST: Agregar nuevo gasto
+### POST: Agregar nuevo gasto
 
 ```bash
 wget --method=POST \
@@ -150,16 +150,7 @@ También puedes agregar variables personalizadas en `config.py` o en el director
 
 ---
 
-##  Autor
-
-* **Nombre**: Darcy Calderon Chipa
-* **Rol**: Desarrollador Backend / Project Manager
-* **Email**: \[[tu-correo@ejemplo.com](mailto:tu-correo@ejemplo.com)]
-* **GitHub**: [https://github.com/tu-usuario](https://github.com/tu-usuario)
-
----
-
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT. Eres libre de usar, modificar y distribuir con fines educativos o institucionales.
 
