@@ -24,7 +24,7 @@ inventario-tesoreria/
 │   ├── config_sede_a.py             # Configuración para BD_sede_A (MySQL puerto 3306)
 │   └── config_sede_b.py             # Configuración para BD_sede_B (MySQL puerto 3307)
 │
-├── instance/                        # (Opcional) Config local no versionada
+├── instance/                        # Carpeta donde se crean las base de datos
 │
 ├── requirements.txt                 # Dependencias Python
 ├── run_sede_a.py                    # Ejecuta Flask conectado a BD_sede_A en localhost:5000
@@ -49,10 +49,17 @@ inventario-tesoreria/
 
 Por defecto, la base de datos es un archivo SQLite llamado `data.db`, generado automáticamente en la raíz del proyecto la primera vez que ejecutas la app.
 
+* Abrir la base de datos
+```bash
+.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_a.db
+.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_b.db
+```
+
 * Si deseas conectarte directamente:
 
 ```bash
-sqlite3 data.db
+sqlite3 data_sede_a.db
+sqlite3 data_sede_b.db
 ```
 
 * Comandos útiles:
@@ -92,19 +99,22 @@ pip install -r requirements.txt
 ### 4. Ejecutar la aplicación
 
 ```bash
-python run.py
+python run_sede_a.py
+python run_sede_b.py
 ```
 
-> La aplicación estará corriendo en `http://localhost:5000/`
+> La aplicación "a" estará corriendo en `http://localhost:5001/`
+> La aplicación "b" estará corriendo en `http://localhost:5002/`
 
 ---
 
 ##  Prueba de Endpoints – Métodos Disponibles
+Este es replicable para `http://localhost:5001/` y `http://localhost:5002/` solo es cambiar la dirección de puerto. Como ejemplo se realiza con `http://localhost:5001/`
 
 ### GET: Listar gastos
 
 ```bash
-wget --method=GET http://localhost:5000/api/gastos/ -O -
+wget --method=GET http://localhost:5001/api/gastos/ -O -
 ```
 
 ---
@@ -119,7 +129,7 @@ wget --method=POST \
        "monto": 150.75,
        "responsable": "Carlos Rojas"
      }' \
-     http://localhost:5000/api/gastos/ -O -
+     http://localhost:5001/api/gastos/ -O -
 ```
 
 ---
@@ -127,7 +137,7 @@ wget --method=POST \
 ###  GET: Listar usuarios
 
 ```bash
-wget --method=GET http://localhost:5000/api/usuarios/ -O -
+wget --method=GET http://localhost:5001/api/usuarios/ -O -
 ```
 
 ---
@@ -142,7 +152,7 @@ wget --method=POST \
        "correo": "maria@ejemplo.com",
        "rol": "Tesorera"
      }' \
-     http://localhost:5000/api/usuarios/ -O -
+     http://localhost:5001/api/usuarios/ -O -
 ```
 
 ---
