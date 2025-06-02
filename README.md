@@ -30,7 +30,7 @@ inventario-tesoreria/
 ├── run_sede_a.py                    # Ejecuta Flask conectado a BD_sede_A en localhost:5000
 ├── run_sede_b.py                    # Ejecuta Flask conectado a BD_sede_B en localhost:5001
 ├── README.md                        # Documentación del proyecto
-└── config.py                        # (Opcional) configuración base
+
 
 ````
 
