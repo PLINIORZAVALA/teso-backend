@@ -9,20 +9,29 @@ TESO Backend es la API desarrollada en **Flask (Python)** para gestionar los gas
 ```bash
 inventario-tesoreria/
 │
-├── app/                   # Lógica de la aplicación Flask
-│   ├── __init__.py        # Inicializa la app y base de datos
-│   ├── routes.py          # Define las rutas/endpoints de la API
-│   ├── models.py          # Define los modelos de base de datos (Usuario y Gasto)
-│   ├── forms.py           # (Opcional) Formularios para validación con Flask-WTF
-│   ├── templates/         # Archivos HTML si se usan vistas con Jinja2
-│   └── static/            # Archivos estáticos (CSS, JS, imágenes)
+├── app/                             # Lógica principal de la aplicación Flask
+│   ├── __init__.py                  # Inicializa la app con configuración dinámica
+│   ├── routes/
+│   │   ├── __init__.py              # Agrupa rutas
+│   │   ├── gastos.py                # Endpoints de gastos
+│   │   └── usuarios.py              # Endpoints de usuarios
+│   ├── models.py                    # Modelos de base de datos
+│   ├── forms.py                     # (Opcional) Formularios Flask-WTF
+│   ├── templates/                   # HTML con Jinja2 (si aplica)
+│   └── static/                      # CSS, JS e imágenes
 │
-├── instance/              # Configuración personalizada (modo producción, etc.)
+├── config/                          # Configuraciones separadas por sede
+│   ├── config_sede_a.py             # Configuración para BD_sede_A (MySQL puerto 3306)
+│   └── config_sede_b.py             # Configuración para BD_sede_B (MySQL puerto 3307)
 │
-├── config.py              # Configuración general (base de datos, claves, debug)
-├── requirements.txt       # Lista de dependencias Python
-├── run.py                 # Punto de entrada principal de la aplicación
-└── README.md              # Este archivo con toda la documentación
+├── instance/                        # (Opcional) Config local no versionada
+│
+├── requirements.txt                 # Dependencias Python
+├── run_sede_a.py                    # Ejecuta Flask conectado a BD_sede_A en localhost:5000
+├── run_sede_b.py                    # Ejecuta Flask conectado a BD_sede_B en localhost:5001
+├── README.md                        # Documentación del proyecto
+└── config.py                        # (Opcional) configuración base
+
 ````
 
 ---
