@@ -79,35 +79,6 @@ python run_sede_b.py
 
 ---
 
-##  Base de Datos
-
-Por defecto, la base de datos es un archivo SQLite llamado `data.db`, generado automáticamente en la raíz del proyecto la primera vez que ejecutas la app.
-
-* Abrir la base de datos
-```bash
-.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_a.db
-.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_b.db
-```
-
-* Si deseas conectarte directamente:
-
-```bash
-sqlite3 data_sede_a.db
-sqlite3 data_sede_b.db
-```
-
-* Comandos útiles:
-
-```sql
-.tables               -- Muestra las tablas disponibles
-.schema gasto         -- Muestra estructura de la tabla `gasto`
-SELECT * FROM gasto;  -- Muestra todos los registros de gastos
-SELECT * FROM usuario;-- Muestra todos los usuarios registrados
-.exit                 -- Salir de SQLite
-```
-
----
-
 ##  Prueba de Endpoints – Métodos Disponibles
 Este es replicable para `http://localhost:5001/` y `http://localhost:5002/` solo es cambiar la dirección de puerto. Como ejemplo se realiza con `http://localhost:5001/`
 
@@ -153,6 +124,35 @@ wget --method=POST \
        "rol": "Tesorera"
      }' \
      http://localhost:5001/api/usuarios/ -O -
+```
+
+---
+
+##  Base de Datos
+
+Por defecto, la base de datos es un archivo SQLite llamado `data.db`, generado automáticamente en la raíz del proyecto la primera vez que ejecutas la app.
+
+* Abrir la base de datos
+```bash
+.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_a.db
+.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_b.db
+```
+
+* Si deseas conectarte directamente:
+
+```bash
+sqlite3 data_sede_a.db
+sqlite3 data_sede_b.db
+```
+
+* Comandos útiles:
+
+```sql
+.tables               -- Muestra las tablas disponibles
+.schema gasto         -- Muestra estructura de la tabla `gasto`
+SELECT * FROM gasto;  -- Muestra todos los registros de gastos
+SELECT * FROM usuario;-- Muestra todos los usuarios registrados
+.exit                 -- Salir de SQLite
 ```
 
 ---
