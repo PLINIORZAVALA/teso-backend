@@ -132,13 +132,12 @@ wget --method=POST \
 
 Por defecto, la base de datos es un archivo SQLite llamado `data.db`, generado automáticamente en la raíz del proyecto la primera vez que ejecutas la app.
 
-* Abrir la base de datos
+* Abrir la carpeta donde se encuentran las bases de datos
 ```bash
-.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_a.db
-.open /home/plinior/unamba/distribuido/apiRestSistema-tesoreria/instance/data_sede_b.db
+cd apiRestSistema-tesoreria/instance/
 ```
 
-* Si deseas conectarte directamente:
+* Luego abrir en sell la base de datos:
 
 ```bash
 sqlite3 data_sede_a.db
