@@ -73,6 +73,7 @@ pip install -r requirements.txt
 ```bash
 python run_sede_a.py
 python run_sede_b.py
+python main.py
 ```
 
 > La aplicación "a" estará corriendo en `http://localhost:5001/`
