@@ -29,6 +29,7 @@ inventario-tesoreria/
 ├── requirements.txt                 # Dependencias Python
 ├── run_sede_a.py                    # Ejecuta Flask conectado a BD_sede_A en localhost:5000
 ├── run_sede_b.py                    # Ejecuta Flask conectado a BD_sede_B en localhost:5001
+├── replicacion.py                   # Configuración para realizar la replicación (topologia E-M) 
 ├── main.py                          # Ejecuta Flask conectando ambas sedes y ambos puertos
 ├── README.md                        # Documentación del proyecto
 
