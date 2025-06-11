@@ -21,14 +21,15 @@ inventario-tesoreria/
 │   └── static/                      # CSS, JS e imágenes
 │
 ├── config/                          # Configuraciones separadas por sede
-│   ├── config_sede_a.py             # Configuración para BD_sede_A (MySQL puerto 3306)
-│   └── config_sede_b.py             # Configuración para BD_sede_B (MySQL puerto 3307)
+│   ├── config_sede_a.py             # Configuración para BD_sede_A (MySQL puerto 5001)
+│   └── config_sede_b.py             # Configuración para BD_sede_B (MySQL puerto 5002)
 │
 ├── instance/                        # Carpeta donde se crean las base de datos
 │
 ├── requirements.txt                 # Dependencias Python
 ├── run_sede_a.py                    # Ejecuta Flask conectado a BD_sede_A en localhost:5000
 ├── run_sede_b.py                    # Ejecuta Flask conectado a BD_sede_B en localhost:5001
+├── main.py                          # Ejecuta Flask conectando ambas sedes y ambos puertos
 ├── README.md                        # Documentación del proyecto
 
 
