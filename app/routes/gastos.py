@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import db, Gasto
 
-bp = Blueprint('gastos', __name__)
+bp = Blueprint('compra', __name__, url_prefix='/api/gastos')
 
 # Obtener todos los gastos
 @bp.route('/', methods=['GET'])

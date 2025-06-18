@@ -17,11 +17,11 @@ def create_app(config_path):
     db.init_app(app)
 
     # Importar y registrar blueprints (rutas)
-    from app.routes import usuarios, proveedores, compras, gastos, inventario
+    from app.routes import usuarios, proveedor, compra, gastos, inventario
 
     app.register_blueprint(usuarios.bp, url_prefix='/api/usuarios')
-    app.register_blueprint(proveedores.bp, url_prefix='/api/proveedores')
-    app.register_blueprint(compras.bp, url_prefix='/api/compras')
+    app.register_blueprint(proveedor.bp, url_prefix='/api/proveedor')
+    app.register_blueprint(compra.bp, url_prefix='/api/compra')
     app.register_blueprint(gastos.bp, url_prefix='/api/gastos')
     app.register_blueprint(inventario.bp, url_prefix='/api/inventario')
 

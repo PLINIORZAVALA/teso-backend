@@ -1,35 +1,31 @@
 from flask import Blueprint, request, jsonify
-from app.models import db, Gasto, Compra
+from app.models import db, Proveedor
 
-bp = Blueprint('gastos', __name__)
+bp = Blueprint('proveedor', __name__, url_prefix='/api/proveedor')
 
-# Listar todos los gastos
+# Listar todos los proveedores
 @bp.route('/', methods=['GET'])
-def listar_gastos():
-    gastos = Gasto.query.all()
+def listar_proveedores():
+    proveedor = Proveedor.query.all()
     return jsonify([{
-        'id': g.id,
-        'descripcion': g.descripcion,
-        'monto': g.monto,
-        'fecha': g.fecha.isoformat(),
-        'compra_id': g.compra_id
-    } for g in gastos])
+        'id': p.id,
+        'nombre': p.nombre,
+        'contacto': p.contacto,
+        'productos_suministrados': p.productos_suministrados
+    } for p in proveedor])
 
-# Registrar un nuevo gasto (requiere compra_id)
+# Agregar un nuevo proveedor
 @bp.route('/', methods=['POST'])
-def agregar_gasto():
+def agregar_proveedor():
     data = request.json
 
-    # Validar que exista la compra asociada
-    compra = Compra.query.get(data['compra_id'])
-    if not compra:
-        return jsonify({'error': 'Compra no encontrada'}), 404
-
-    nuevo = Gasto(
-        descripcion=data['descripcion'],
-        monto=data['monto'],
-        compra_id=data['compra_id']
+    nuevo_proveedor = Proveedor(
+        nombre=data['nombre'],
+        contacto=data.get('contacto'),
+        productos_suministrados=data.get('productos_suministrados', '')
     )
-    db.session.add(nuevo)
+
+    db.session.add(nuevo_proveedor)
     db.session.commit()
-    return jsonify({'mensaje': 'Gasto registrado correctamente'}), 201
+
+    return jsonify({'mensaje': 'Proveedor registrado correctamente'}), 201

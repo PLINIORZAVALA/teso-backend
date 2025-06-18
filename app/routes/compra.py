@@ -1,19 +1,20 @@
 from flask import Blueprint, request, jsonify
+import os
 from app.models import db, Compra, Usuario, Proveedor
 from datetime import datetime
 
-bp = Blueprint('compras', __name__, url_prefix='/api/compras')
+bp = Blueprint(f'compra_{os.getpid()}', __name__)
 
 # Listar todas las compras
 @bp.route('/', methods=['GET'])
 def listar_compras():
-    compras = Compra.query.all()
+    compra = Compra.query.all()
     return jsonify([{
         'id': c.id,
         'fecha': c.fecha.isoformat(),
         'usuario_id': c.usuario_id,
         'proveedor_id': c.proveedor_id
-    } for c in compras])
+    } for c in compra])
 
 # Agregar una nueva compra
 @bp.route('/', methods=['POST'])
