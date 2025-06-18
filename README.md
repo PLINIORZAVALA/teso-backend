@@ -13,7 +13,10 @@ inventario-tesoreria/
 │   ├── __init__.py                  # Inicializa la app con configuración dinámica
 │   ├── routes/
 │   │   ├── __init__.py              # Agrupa rutas
+│   │   ├── compra.py                # Endpoints de compra
 │   │   ├── gastos.py                # Endpoints de gastos
+│   │   ├── inventario.py            # Endpoints de inventario
+│   │   ├── proveedor.py             # Endpoints de proveedor
 │   │   └── usuarios.py              # Endpoints de usuarios
 │   ├── models.py                    # Modelos de base de datos
 │   ├── forms.py                     # (Opcional) Formularios Flask-WTF
