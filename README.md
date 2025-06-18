@@ -85,41 +85,17 @@ python main.py
 
 ---
 
-##  Prueba de Endpoints – Métodos Disponibles
-Este es replicable para `http://localhost:5001/` y `http://localhost:5002/` solo es cambiar la dirección de puerto. Como ejemplo se realiza con `http://localhost:5001/`
+---
 
-### GET: Listar gastos
+## Prueba de Endpoints – Métodos Disponibles
 
-```bash
-wget --method=GET http://localhost:5001/api/gastos/ -O -
-```
+> Las pruebas pueden hacerse tanto en `http://localhost:5001/` como en `http://localhost:5002/`, solo cambia el puerto. En este ejemplo se usa `http://localhost:5001/`.
 
 ---
 
-### POST: Agregar nuevo gasto
+### USUARIOS
 
-```bash
-wget --method=POST \
-     --header="Content-Type: application/json" \
-     --body-data='{
-       "descripcion": "Compra de útiles",
-       "monto": 150.75,
-       "responsable": "Carlos Rojas"
-     }' \
-     http://localhost:5001/api/gastos/ -O -
-```
-
----
-
-###  GET: Listar usuarios
-
-```bash
-wget --method=GET http://localhost:5001/api/usuarios/ -O -
-```
-
----
-
-###  POST: Crear nuevo usuario
+#### 1. Crear usuario (POST `/api/usuarios/`)
 
 ```bash
 wget --method=POST \
@@ -131,6 +107,135 @@ wget --method=POST \
      }' \
      http://localhost:5001/api/usuarios/ -O -
 ```
+
+#### 2. Obtener todos los usuarios (GET `/api/usuarios/`)
+
+```bash
+wget http://localhost:5001/api/usuarios/ -O -
+```
+
+#### 3. Obtener usuario por ID (GET `/api/usuarios/1`)
+
+```bash
+wget http://localhost:5001/api/usuarios/1 -O -
+```
+
+#### 4. Actualizar usuario (PUT `/api/usuarios/1`)
+
+```bash
+wget --method=PUT \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "nombre": "María Actualizada",
+       "correo": "maria.actualizada@ejemplo.com",
+       "rol": "Administrador"
+     }' \
+     http://localhost:5001/api/usuarios/1 -O -
+```
+
+#### 5. Eliminar usuario (DELETE `/api/usuarios/1`)
+
+```bash
+wget --method=DELETE http://localhost:5001/api/usuarios/1 -O -
+```
+---
+
+### PROVEEDOR
+
+#### 1. Listar todos los proveedores (GET `/api/proveedor/`)
+
+```bash
+wget http://localhost:5001/api/proveedor/ -O -
+```
+
+#### 2. Agregar un nuevo proveedor (POST `/api/proveedor/`)
+
+```bash
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "nombre": "Suministros Andinos",
+       "contacto": "andinos@correo.com",
+       "productos_suministrados": "Papelería, equipos de oficina"
+     }' \
+     http://localhost:5001/api/proveedor/ -O -
+```
+
+---
+
+### COMPRA
+
+#### 1. Listar todas las compras (GET `/api/compra/`)
+
+```bash
+wget http://localhost:5001/api/compra/ -O -
+```
+
+#### 2. Agregar una nueva compra (POST `/api/compra/`)
+
+```bash
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "usuario_id": 1,
+       "proveedor_id": 1
+     }' \
+     http://localhost:5001/api/compra/ -O -
+```
+---
+
+### INVENTARIO
+
+#### 1. Listar todo el inventario (GET `/api/inventario/`)
+
+```bash
+wget http://localhost:5001/api/inventario/ -O -
+```
+
+#### 2. Agregar un producto al inventario (POST `/api/inventario/`)
+
+> Asegúrate de que exista una compra con el ID que pongas en `"compra_id"`.
+
+```bash
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "producto": "Laptop Lenovo",
+       "cantidad": 10,
+       "ubicacion": "Almacén principal",
+       "compra_id": 1
+     }' \
+     http://localhost:5001/api/inventario/ -O -
+```
+
+---
+
+### GASTOS
+
+#### 1. Listar todos los gastos (GET `/api/gastos/`)
+
+```bash
+wget http://localhost:5001/api/gastos/ -O -
+```
+
+#### 2. Registrar un nuevo gasto (POST `/api/gastos/`)
+
+> Asegúrate de que ya exista una `compra_id` válida.
+> Ejemplo con `compra_id = 1`.
+
+```bash
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "descripcion": "Compra de dos Laptop",
+       "monto": 300,
+       "compra_id": 1
+     }' \
+     http://localhost:5001/api/gastos/ -O -
+```
+
+---
+
 
 ---
 
@@ -155,8 +260,11 @@ sqlite3 data_sede_b.db
 ```sql
 .tables               -- Muestra las tablas disponibles
 .schema gasto         -- Muestra estructura de la tabla `gasto`
-SELECT * FROM gasto;  -- Muestra todos los registros de gastos
-SELECT * FROM usuario;-- Muestra todos los usuarios registrados
+SELECT * FROM compra;  -- Muestra todos los registros de compra
+SELECT * FROM gasto;-- Muestra todos los usuarios gasto
+SELECT * FROM inventario;  -- Muestra todos los registros de inventario
+SELECT * FROM proveedor;  -- Muestra todos los registros de proveedor
+SELECT * FROM usuario;  -- Muestra todos los registros de usuario
 .exit                 -- Salir de SQLite
 ```
 
