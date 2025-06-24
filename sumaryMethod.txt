@@ -1,0 +1,95 @@
+=============================================================================
+                                USUARIOS
+=============================================================================
+1. Crear usuario (POST /api/usuarios/)
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "nombre": "María López",
+       "correo": "maria@ejemplo.com",
+       "rol": "Tesorera"
+     }' \
+     http://localhost:5001/api/usuarios/ -O -
+
+2. Obtener todos los usuarios (GET /api/usuarios/)
+wget http://localhost:5001/api/usuarios/ -O -
+
+3. Obtener usuario por ID (GET /api/usuarios/1)
+wget http://localhost:5001/api/usuarios/1 -O -
+
+4. Actualizar usuario (PUT /api/usuarios/1)
+wget --method=PUT \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "nombre": "María Actualizada",
+       "correo": "maria.actualizada@ejemplo.com",
+       "rol": "Administrador"
+     }' \
+     http://localhost:5001/api/usuarios/1 -O -
+
+5. Eliminar usuario (DELETE /api/usuarios/1)
+wget --method=DELETE http://localhost:5001/api/usuarios/1 -O -
+=============================================================================
+                            INVENTARIO
+=============================================================================
+1. Listar todo el inventario (GET /api/inventario/)
+wget http://localhost:5001/api/inventario/ -O -
+
+2. Agregar un producto al inventario (POST /api/inventario/)
+Asegúrate de que exista una compra con el ID que pongas en "compra_id",
+o este endpoint devolverá error 404.
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "producto": "Laptop Lenovo",
+       "cantidad": 10,
+       "ubicacion": "Almacén principal",
+       "compra_id": 1
+     }' \
+     http://localhost:5001/api/inventario/ -O -
+=============================================================================
+                                Proveedor
+=============================================================================
+1. Listar todos los proveedores (GET /api/proveedor/)
+wget http://localhost:5001/api/proveedor/ -O -
+
+2. Agregar un nuevo proveedor (POST /api/proveedor/)
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "nombre": "Suministros Andinos",
+       "contacto": "andinos@correo.com",
+       "productos_suministrados": "Papelería, equipos de oficina"
+     }' \
+     http://localhost:5001/api/proveedor/ -O -
+=============================================================================
+                                Compra
+=============================================================================
+1. Listar todas las compras (GET /api/compra/)
+wget http://localhost:5001/api/compra/ -O -
+
+2. Agregar una nueva compra (POST /api/compra/)
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "usuario_id": 1,
+       "proveedor_id": 1
+     }' \
+     http://localhost:5001/api/compra/ -O -
+=============================================================================
+                              Gastos
+=============================================================================
+1. Listar todos los gastos (GET /api/gastos/)
+wget http://localhost:5001/api/gastos/ -O -
+
+2. Registrar un nuevo gasto (POST /api/gastos/)
+Asegúrate de que ya exista una compra_id válida.
+Ejemplo con compra_id = 1
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "descripcion": "Compra de dos Laptop",
+       "monto": 300,
+       "compra_id": 1
+     }' \
+     http://localhost:5001/api/gastos/ -O -

@@ -103,7 +103,8 @@ wget --method=POST \
      --body-data='{
        "nombre": "María López",
        "correo": "maria@ejemplo.com",
-       "rol": "Tesorera"
+       "rol": "Tesorera",
+       "contraseña": "maria123"
      }' \
      http://localhost:5001/api/usuarios/ -O -
 ```
@@ -128,7 +129,8 @@ wget --method=PUT \
      --body-data='{
        "nombre": "María Actualizada",
        "correo": "maria.actualizada@ejemplo.com",
-       "rol": "Administrador"
+       "rol": "Administrador",
+       "contraseña": "nuevaClave456"
      }' \
      http://localhost:5001/api/usuarios/1 -O -
 ```

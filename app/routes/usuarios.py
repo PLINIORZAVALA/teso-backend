@@ -11,7 +11,8 @@ def crear_usuario():
     nuevo_usuario = Usuario(
         nombre=data['nombre'],
         correo=data['correo'],
-        rol=data['rol']
+        rol=data['rol'],
+        contraseña=data['contraseña']  
     )
     db.session.add(nuevo_usuario)
     db.session.commit()
@@ -27,6 +28,7 @@ def obtener_usuarios():
             'nombre': u.nombre,
             'correo': u.correo,
             'rol': u.rol
+            # 🔒 Contraseña no se devuelve por seguridad
         } for u in usuarios
     ]
     return jsonify(resultado)
@@ -40,6 +42,7 @@ def obtener_usuario(id):
         'nombre': usuario.nombre,
         'correo': usuario.correo,
         'rol': usuario.rol
+        # 🔒 Contraseña no se devuelve por seguridad
     })
 
 # Actualizar usuario
@@ -51,6 +54,8 @@ def actualizar_usuario(id):
     usuario.nombre = data.get('nombre', usuario.nombre)
     usuario.correo = data.get('correo', usuario.correo)
     usuario.rol = data.get('rol', usuario.rol)
+    if 'contraseña' in data:
+        usuario.contraseña = data['contraseña']  # ✅ Se permite actualizar
 
     db.session.commit()
     return jsonify({'mensaje': 'Usuario actualizado correctamente'})

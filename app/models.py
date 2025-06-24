@@ -8,8 +8,10 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     correo = db.Column(db.String(120), unique=True, nullable=False)
     rol = db.Column(db.String(50), nullable=False)
+    contraseña = db.Column(db.String(200), nullable=False)  # ✅ Campo añadido
 
     compras = db.relationship('Compra', backref='usuario', lazy=True)
+
 
 
 class Proveedor(db.Model):
