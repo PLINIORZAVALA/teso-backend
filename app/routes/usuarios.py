@@ -67,3 +67,28 @@ def eliminar_usuario(id):
     db.session.delete(usuario)
     db.session.commit()
     return jsonify({'mensaje': 'Usuario eliminado correctamente'})
+
+# Login de usuario
+@bp.route('/login', methods=['POST'])
+def login_usuario():
+    data = request.get_json()
+    correo = data.get('correo')
+    contraseña = data.get('contraseña')
+
+    if not correo or not contraseña:
+        return jsonify({'error': 'Correo y contraseña son obligatorios'}), 400
+
+    usuario = Usuario.query.filter_by(correo=correo).first()
+
+    if usuario and usuario.contraseña == contraseña:
+        return jsonify({
+            'mensaje': 'Login exitoso',
+            'usuario': {
+                'id': usuario.id,
+                'nombre': usuario.nombre,
+                'correo': usuario.correo,
+                'rol': usuario.rol
+            }
+        })
+    else:
+        return jsonify({'error': 'Credenciales incorrectas'}), 401

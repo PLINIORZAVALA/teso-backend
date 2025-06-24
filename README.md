@@ -134,8 +134,20 @@ wget --method=PUT \
      }' \
      http://localhost:5001/api/usuarios/1 -O -
 ```
+#### 5. Login usuario (POST /api/usuarios/login `/api/usuarios/login`)
 
-#### 5. Eliminar usuario (DELETE `/api/usuarios/1`)
+```bash
+wget --method=POST \
+     --header="Content-Type: application/json" \
+     --body-data='{
+       "correo": "maria.actualizada@ejemplo.com",
+       "contraseña": "maria123"
+     }' \
+     http://localhost:5001/api/usuarios/login -O -
+```
+
+
+#### 6. Eliminar usuario (DELETE `/api/usuarios/1`)
 
 ```bash
 wget --method=DELETE http://localhost:5001/api/usuarios/1 -O -
